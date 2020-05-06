@@ -15,7 +15,7 @@ declare module 'egg' {
         type: string,
         check: RegExp | CheckHandlerFunc,
         override?: boolean,
-        convertType?: Function | String
+        convertType?: (value:any)=>any | String
       ) => void;
       validate: (rules: any, data: any) => ValidateError[];
     };
@@ -24,9 +24,9 @@ declare module 'egg' {
   export interface Context {
     validate: (rules: any, data?: any) => void;
   }
-  interface EggAppConfig {
+  export interface EggAppConfig {
     validate: {
-      translate: Function;
+      translate: (args)=>void;
       validateRoot: boolean;
       convert: boolean;
       widelyUndefined: boolean;
